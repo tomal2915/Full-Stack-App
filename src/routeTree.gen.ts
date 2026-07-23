@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
+import { Route as StatePlaygroundRouteImport } from './routes/state-playground'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,45 @@ const ComponentsPlaygroundRoute = ComponentsPlaygroundRouteImport.update({
   path: '/components-playground',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StatePlaygroundRoute = StatePlaygroundRouteImport.update({
+  id: '/state-playground',
+  path: '/state-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/components-playground': typeof ComponentsPlaygroundRoute
+  '/state-playground': typeof StatePlaygroundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/components-playground'
+  fullPaths: '/' | '/about' | '/components-playground' | '/state-playground'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/components-playground'
-  id: '__root__' | '/' | '/about' | '/components-playground'
+  to: '/' | '/about' | '/components-playground' | '/state-playground'
+  id:
+    '__root__' | '/' | '/about' | '/components-playground' | '/state-playground'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
+  StatePlaygroundRoute: typeof StatePlaygroundRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +93,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsPlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/state-playground': {
+      id: '/state-playground'
+      path: '/state-playground'
+      fullPath: '/state-playground'
+      preLoaderRoute: typeof StatePlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +107,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
+  StatePlaygroundRoute: StatePlaygroundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
