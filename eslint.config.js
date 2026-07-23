@@ -22,10 +22,10 @@ export default defineConfig([
   },
 
   // Disable the rule for TanStack Router route files
-  {
-    files: ['src/routes/**/*.{ts,tsx}'],
-    rules: {
-      'react-refresh/only-export-components': 'off',
-    },
-  },
+  // {
+  //   files: ['src/routes/**/*.{ts,tsx}'],
+  //   rules: {
+  //     'react-refresh/only-export-components': 'off',
+  //   },
+  // },
 ])

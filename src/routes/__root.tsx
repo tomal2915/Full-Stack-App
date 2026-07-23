@@ -13,6 +13,12 @@ export const Route = createRootRoute({
             Home
           </Link>
           <Link
+            to="/components-playground"
+            className="text-gray-300 hover:text-white transition-colors [&.active]:font-bold [&.active]:text-white"
+          >
+            Playground
+          </Link>
+          <Link
             to="/about"
             className="text-gray-300 hover:text-white transition-colors [&.active]:font-bold [&.active]:text-white"
           >
